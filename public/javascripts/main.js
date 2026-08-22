@@ -68,7 +68,16 @@ $(function () {
         });
     }
 
-    getWeather()
+    function updateClock () {
+        const now = new Date()
+
+        const time = now.toLocaleTimeString([], {
+            hour: 'numeric',
+            minute: '2-digit'
+        })
+
+        $("#clock").text(time);
+    }
 
     function search() {
         let text = searchInput.val()
@@ -87,4 +96,8 @@ $(function () {
     searchBtn.on('click', function () {
         search()
     })
+
+    getWeather()
+    updateClock()
+    setInterval(updateClock, 1000)
 })

@@ -20,3 +20,10 @@
   background-size: cover;
   background-position: bottom right;
 }
+
+#clock {
+  font-size: 5rem;
+  font-weight: bolder;
+  text-align: center;
+  color: antiquewhite;
+}
