@@ -1,0 +1,22 @@
+#search-icon {
+  font-size: larger;
+}
+
+#search-btn {
+  width: 65px;
+  border-left: 1px solid #dee2e6 !important;
+  z-index: 15;
+  background: #0b111d99;
+  color: #ffffff;
+}
+
+#searchBox {
+  z-index: 10;
+  box-shadow: none;
+}
+
+#background {
+  background-image: url("/images/bessi-tree-736882_1920.jpg");
+  background-size: cover;
+  background-position: bottom right;
+}
