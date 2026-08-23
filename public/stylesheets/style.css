@@ -28,6 +28,7 @@
 
 #background {
   position: relative;
+  overflow: hidden;
 }
 
 #background-image {
