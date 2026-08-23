@@ -12,6 +12,25 @@
 
 <body>
   {{{body}}}
+
+  <script type="module">
+    import { LiquidGlass } from 'https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js';
+
+    const glassEl = document.querySelector('#weather-card');
+    glassEl.dataset.config = JSON.stringify({
+      floating: true,
+        blurAmount: 0.25,
+        cornerRadius: 30,
+    });
+
+    const instance = await LiquidGlass.init({
+      root: document.querySelector('#background'),
+      glassElements: [glassEl],
+    });
+
+
+  </script>
+
 </body>
 
 </html>
