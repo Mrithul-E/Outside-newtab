@@ -2,6 +2,12 @@
 $(function () {
     const searchInput = $("#searchBox")
     const searchBtn = $("#search-btn")
+    const weatherEmoji = $("#weather-emoji")
+    const temparature = $("#temparature")
+    const weather = $("#weather")
+    const humidity = $("#humidity")
+    const wind = $("#wind")
+    const weatherTime = $("#weather-time")
 
     const weatherInfo = {
         0: ["Clear sky", "☀️"],
@@ -65,10 +71,27 @@ $(function () {
             data.current["weather"] = weatherInfo[data.current.weather_code]
 
             console.log(data.current);
+
+            const date = new Date(data.current.time);
+
+            const formatted = date.toLocaleString("en-IN", {
+                month: "short",
+                day: "2-digit",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true
+            });
+
+            weatherEmoji.text(data.current.weather[1])
+            temparature.text(data.current.temperature_2m + '°')
+            weather.text(data.current.weather[0])
+            humidity.text(data.current.relative_humidity_2m + '%')
+            wind.text(data.current.wind_speed_10m + ' km/h')
+            weatherTime.text('Updated time: '+ formatted)
         });
     }
 
-    function updateClock () {
+    function updateClock() {
         const now = new Date()
 
         const time = now.toLocaleTimeString([], {
