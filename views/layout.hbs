@@ -19,14 +19,32 @@
     const glassEl = document.querySelector('#weather-card');
     glassEl.dataset.config = JSON.stringify({
       floating: true,
-        blurAmount: 0.25,
-        cornerRadius: 30,
+      blurAmount: 0.25,
+      cornerRadius: 30,
     });
 
     const instance = await LiquidGlass.init({
       root: document.querySelector('#background'),
       glassElements: [glassEl],
     });
+
+    const STORAGE_WEATHER_CARD = 'weatherCardPosition'
+
+    const savedData = localStorage.getItem(STORAGE_WEATHER_CARD)
+
+    if (savedData) {
+      glassEl.style.transform = savedData
+    } else {
+      glassEl.style.transform = 'translate(10px,10px)'
+    }
+
+    glassEl.addEventListener("pointerup", () => {
+      const translate = glassEl.style.transform;
+      if (translate) {
+        localStorage.setItem(STORAGE_WEATHER_CARD, translate)
+      }
+      console.log(translate);
+    }, true);
 
 
   </script>
