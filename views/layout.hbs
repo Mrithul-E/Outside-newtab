@@ -23,11 +23,6 @@
       cornerRadius: 30,
     });
 
-    const instance = await LiquidGlass.init({
-      root: document.querySelector('#background'),
-      glassElements: [glassEl],
-    });
-
     const STORAGE_WEATHER_CARD = 'weatherCardPosition'
 
     const savedData = localStorage.getItem(STORAGE_WEATHER_CARD)
@@ -37,6 +32,13 @@
     } else {
       glassEl.style.transform = 'translate(10px,10px)'
     }
+
+    const rootEl = document.querySelector('#background');
+
+    const instance = await LiquidGlass.init({
+      root: rootEl,
+      glassElements: [glassEl],
+    });
 
     glassEl.addEventListener("pointerup", () => {
       const translate = glassEl.style.transform;
