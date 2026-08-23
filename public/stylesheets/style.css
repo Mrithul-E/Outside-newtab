@@ -15,10 +15,6 @@
   box-shadow: none;
 }
 
-#search-container {
-  z-index: 5;
-}
-
 #clock {
   font-size: 5rem;
   font-weight: bolder;
@@ -29,6 +25,11 @@
 #background {
   position: relative;
   overflow: hidden;
+}
+
+#background > .w-100 {
+  z-index: 5;
+  position: relative;
 }
 
 #background-image {
