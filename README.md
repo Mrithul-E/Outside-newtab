@@ -1,47 +1,47 @@
-# OutSide 🌤️ 
+# OutSide-Newtab 
 
 A minimal but beautiful newtab website with weather, clock, search,  shortcuts, and a efficient glassmorphism UI.
 
 ![Outside Preview](./public/images/preview.png)
 
-## ✨ Features
+The weather widget is dragable, the user can position it anywhere. It stays there even after refreshing
 
-- Current weather based on your location
-- Live clock
+## Features
+
+- Weather data based on GPS location using Open-Meteo API
+- Digital clock
 - Google search
 - Custom website shortcuts
-- Shortcuts are saved in localStorage
-- Automatic website favicons
-- Glass-style UI
+- Automatic website favicons for shortcuts using Google favicon API
+- Glass morphism style using [LiquidGlass](https://github.com/ybouane/liquidglass)
 
-## 🛠️ Built With
+## Built With
 
-- HTML
-- CSS
-- JavaScript
-- jQuery
+- HTML, CSS and Javascript
+- Jquery
 - Bootstrap
 - Font Awesome
 - Open-Meteo API
 - Google favicon API
-- Nodejs
-- Express
+- Nodejs Express
 - [LiquidGlass](https://github.com/ybouane/liquidglass)
 
-## 🌦️ Weather
+## Weather
 
-The page displays:
+Weather Datas:
 
 - Temperature
-- Weather condition
+- Weather condition name
 - Humidity
 - Wind speed
-- Weather update time
 
-# 
+- Last updated time
+
+#
+#
 
 Made with ❤️ in India by [Mrithul](https://github.com/Mrithul-E)
 
 ## License
 
-This project is licensed under the MIT License.
+MIT License.
