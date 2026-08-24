@@ -8,6 +8,12 @@ $(function () {
     const humidity = $("#humidity")
     const wind = $("#wind")
     const weatherTime = $("#weather-time")
+    const shortcutUrl = $("#shortcut-url")
+    const shortcutError = $("#shortcut-error")
+
+    const shortcutModal = new bootstrap.Modal(
+        document.querySelector("#addShortcutModal")
+    )
 
     const weatherInfo = {
         0: ["Clear sky", "☀️"],
@@ -155,6 +161,96 @@ $(function () {
             console.log(translate);
         }, true);
     })
+
+    function loadShortcuts() {
+        const shortcuts = JSON.parse(
+            localStorage.getItem("shortcuts") || "[]"
+        )
+
+        shortcuts.forEach(function (shortcut) {
+            const button = $(`
+            <button class="shortcut-btn" type="button">
+                <img src="${shortcut.favicon}" alt="">
+            </button>
+            `)
+
+            button.on("click", function () {
+                window.open(shortcut.url, "_blank")
+            })
+
+            $("#shortcuts").prepend(button)
+        })
+    }
+
+
+    $("#add-shortcut").on("click", function () {
+        shortcutUrl.val("")
+        shortcutError.text("")
+        shortcutModal.show()
+    })
+
+
+    $("#save-shortcut").on("click", function () {
+        let url = shortcutUrl.val().trim()
+
+        if (!url) {
+            shortcutError.text("Enter a website URL")
+            return
+        }
+
+        if (!url.startsWith("http://") && !url.startsWith("https://")) {
+            url = "https://" + url
+        }
+
+        let parsedURL;
+
+        try {
+            parsedURL = new URL(url)
+        } catch {
+            shortcutError.text("Enter a valid URL")
+            return
+        }
+
+        const hostname = parsedURL.hostname
+
+        const favicon =
+            "https://www.google.com/s2/favicons?domain=" +
+            hostname +
+            "&sz=64"
+
+        const shortcut = {
+            url: url,
+            favicon: favicon
+        }
+
+        const shortcuts = JSON.parse(
+            localStorage.getItem("shortcuts") || "[]"
+        )
+
+        shortcuts.push(shortcut)
+
+        localStorage.setItem(
+            "shortcuts",
+            JSON.stringify(shortcuts)
+        )
+        
+        const button = $(`
+            <button class="shortcut-btn" type="button">
+                <img src="${favicon}" alt="">
+            </button>
+        `)
+
+        button.on("click", function () {
+            window.open(url, "_blank")
+        })
+
+        $("#shortcuts").prepend(button)
+
+        shortcutModal.hide()
+    })
+
+
+    loadShortcuts()
 
     getWeather()
     updateClock()
