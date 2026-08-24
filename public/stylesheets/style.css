@@ -86,7 +86,6 @@
 .shortcut-btn {
   width: 52px;
   height: 52px;
-
   padding: 0;
 
   display: flex;
@@ -108,7 +107,6 @@
     0 8px 25px rgba(0, 0, 0, 0.15);
 
   overflow: hidden;
-
   cursor: pointer;
 
   transition:
