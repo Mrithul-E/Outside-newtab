@@ -119,9 +119,11 @@ $(function () {
     searchBtn.on('click', function () {
         search()
     })
-    
+
     LiquidGlassReady.then(async function (LiquidGlass) {
         const glassEl = document.querySelector('#weather-card');
+        const shortcutBtns = document.querySelectorAll('.shortcut-btn')
+
         glassEl.dataset.config = JSON.stringify({
             floating: true,
             blurAmount: 0.25,
@@ -142,7 +144,7 @@ $(function () {
 
         const instance = await LiquidGlass.init({
             root: rootEl,
-            glassElements: [glassEl],
+            glassElements: [glassEl, shortcutBtns],
         });
 
         glassEl.addEventListener("pointerup", () => {
