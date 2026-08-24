@@ -8,49 +8,22 @@
   <script src="https://code.jquery.com/jquery-4.0.0.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://kit.fontawesome.com/4323aee170.js" crossorigin="anonymous"></script>
-</head>
 
-<body>
-  {{{body}}}
+  <script>
+    window.LiquidGlassReady = new Promise(function (resolve) {
+      window.resolveLiquidGlass = resolve
+    })
+  </script>
 
   <script type="module">
     import { LiquidGlass } from 'https://cdn.jsdelivr.net/npm/@ybouane/liquidglass/dist/index.js';
 
-    const glassEl = document.querySelector('#weather-card');
-    glassEl.dataset.config = JSON.stringify({
-      floating: true,
-      blurAmount: 0.25,
-      cornerRadius: 30,
-    });
-
-    const STORAGE_WEATHER_CARD = 'weatherCardPosition'
-
-    const savedData = localStorage.getItem(STORAGE_WEATHER_CARD)
-
-    if (savedData) {
-      glassEl.style.transform = savedData
-    } else {
-      glassEl.style.transform = 'translate(10px,10px)'
-    }
-
-    const rootEl = document.querySelector('#background');
-
-    const instance = await LiquidGlass.init({
-      root: rootEl,
-      glassElements: [glassEl],
-    });
-
-    glassEl.addEventListener("pointerup", () => {
-      const translate = glassEl.style.transform;
-      if (translate) {
-        localStorage.setItem(STORAGE_WEATHER_CARD, translate)
-      }
-      console.log(translate);
-    }, true);
-
-
+    window.resolveLiquidGlass(LiquidGlass)
   </script>
+</head>
 
+<body>
+  {{{body}}}
 </body>
 
 </html>

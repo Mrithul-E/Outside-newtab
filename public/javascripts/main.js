@@ -87,7 +87,7 @@ $(function () {
             weather.text(data.current.weather[0])
             humidity.text(data.current.relative_humidity_2m + '%')
             wind.text(data.current.wind_speed_10m + ' km/h')
-            weatherTime.text('Updated time: '+ formatted)
+            weatherTime.text('Updated time: ' + formatted)
         });
     }
 
@@ -118,6 +118,40 @@ $(function () {
 
     searchBtn.on('click', function () {
         search()
+    })
+    
+    LiquidGlassReady.then(async function (LiquidGlass) {
+        const glassEl = document.querySelector('#weather-card');
+        glassEl.dataset.config = JSON.stringify({
+            floating: true,
+            blurAmount: 0.25,
+            cornerRadius: 30,
+        });
+
+        const STORAGE_WEATHER_CARD = 'weatherCardPosition'
+
+        const savedData = localStorage.getItem(STORAGE_WEATHER_CARD)
+
+        if (savedData) {
+            glassEl.style.transform = savedData
+        } else {
+            glassEl.style.transform = 'translate(10px,10px)'
+        }
+
+        const rootEl = document.querySelector('#background');
+
+        const instance = await LiquidGlass.init({
+            root: rootEl,
+            glassElements: [glassEl],
+        });
+
+        glassEl.addEventListener("pointerup", () => {
+            const translate = glassEl.style.transform;
+            if (translate) {
+                localStorage.setItem(STORAGE_WEATHER_CARD, translate)
+            }
+            console.log(translate);
+        }, true);
     })
 
     getWeather()
