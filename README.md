@@ -3,6 +3,7 @@
 A minimal but beautiful newtab website with weather, clock, search,  shortcuts, and a efficient glassmorphism UI.
 
 ![Outside Preview](./public/images/preview.png)
+Background image by [Bessi](https://pixabay.com/users/bessi-909086/) in Pixabay
 
 The weather widget is dragable, the user can position it anywhere. It stays there even after refreshing
 
